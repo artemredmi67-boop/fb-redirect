@@ -1,68 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Watch Video</title>
-
-<meta property="og:title" content="Watch Video 🔥">
-<meta property="og:description" content="Tap to watch">
+<title>Watch</title>
+<meta property="og:title" content="Watch Video">
+<meta property="og:description" content="Click to continue">
 <meta property="og:image" content="https://i.postimg.cc/VvNxhS1n/photo-2026-06-25-21-41-49.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://artemredmi67-boop.github.io/fb-redirect/">
 
 <style>
 body{
     margin:0;
-    background:#111;
-    font-family:Arial,sans-serif;
+    font-family:Arial;
+    background:#0f0f0f;
+    color:white;
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
 }
-
-.container{
-    text-align:center;
-    max-width:500px;
+.box{
     width:90%;
+    max-width:420px;
+    text-align:center;
 }
-
 img{
     width:100%;
     border-radius:12px;
 }
-
-.btn{
+h1{
+    font-size:20px;
+    margin:15px 0 10px;
+}
+p{
+    font-size:14px;
+    opacity:0.7;
+}
+a.button{
     display:inline-block;
-    margin-top:20px;
-    padding:15px 30px;
+    margin-top:15px;
+    padding:14px 20px;
     background:#1877f2;
     color:white;
     text-decoration:none;
     border-radius:8px;
-    font-size:20px;
     font-weight:bold;
+    width:100%;
+    pointer-events: none; /* по умолчанию неактивна */
+    opacity: 0.6;         /* слегка затемнена */
+}
+a.button.active {
+    pointer-events: auto;
+    opacity: 1;
 }
 </style>
 </head>
-
 <body>
-
-<div class="container">
-
-<img src="https://i.postimg.cc/VvNxhS1n/photo-2026-06-25-21-41-49.jpg" alt="Preview">
-
-<br>
-
-<a class="btn" href="https://grzvkg.datewiithyou.net/?utm_source=da57dc555e50572d&ban=fb&j1=1&s1=212364&s2=2263693" target="_blank">
-▶ Watch Now
-</a>
-
+<div class="box">
+    <img src="https://i.postimg.cc/VvNxhS1n/photo-2026-06-25-21-41-49.jpg">
+    <h1>Watch the full content</h1>
+    <p>Click below to continue</p>
+    <a id="continueBtn" class="button" href="https://grzvkg.datewiithyou.net/?utm_source=da57dc555e50572d&ban=fb&j1=1&s1=212364&s2=2263693">
+        Continue
+    </a>
 </div>
 
+<script>
+// Активируем кнопку только на Android и iOS
+function isMobile() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        return true;
+    }
+    if (/android/i.test(ua)) {
+        return true;
+    }
+    return false;
+}
+
+window.onload = function() {
+    const btn = document.getElementById('continueBtn');
+    
+    if (isMobile()) {
+        btn.classList.add('active');
+    } else {
+        // На остальных устройствах кнопка видна, но не работает
+        btn.href = "#";           // бесполезная ссылка
+        btn.onclick = function(e) {
+            e.preventDefault();   // блокируем переход
+            return false;
+        };
+    }
+};
+</script>
 </body>
 </html>
